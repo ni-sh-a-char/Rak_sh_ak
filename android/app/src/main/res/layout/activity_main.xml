@@ -8,10 +8,15 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="169dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="67dp"
         android:background="#009688"
         android:text="Take Picture"
         android:textAllCaps="false"
@@ -66,6 +71,17 @@
         android:textSize="22sp"
         android:id="@+id/confidence"
         android:layout_below="@+id/confidencesText"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigator"
+        app:itemBackground="@color/purple_500"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu"
+        android:layout_alignParentEnd="true"
         />
 
 </RelativeLayout>

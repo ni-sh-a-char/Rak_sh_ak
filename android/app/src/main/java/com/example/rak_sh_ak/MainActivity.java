@@ -1,5 +1,6 @@
 package com.example.rak_sh_ak;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,12 +11,14 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rak_sh_ak.ml.Model;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
@@ -25,6 +28,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class MainActivity extends AppCompatActivity {
+
+    BottomNavigationView bottomNavigationView;
 
     TextView result, confidence;
     ImageView imageView;
@@ -125,5 +130,32 @@ public class MainActivity extends AppCompatActivity {
             classifyImage(image);
         }
         super.onActivityResult(requestCode, resultCode, data);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.qr);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.layers:
+                        return true;
+
+                    case R.id.qr:
+                        startActivity(new Intent(getApplicationContext(),Scanner.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.about:
+                        startActivity(new Intent(getApplicationContext(),About.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return  false;
+            }
+        });
     }
 }
